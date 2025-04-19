@@ -3,27 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz UTS</title>
+    <title>Latihan UTS Cloud</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Image Gallery</h2>
-        <p>Image list to show image and image upload</p>
-        <p>by <a href="">Nadella Company</a></p>
-        <!-- Upload Form -->
-        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
-            <input type="file" name="image" required>
-            <button type="submit" class="button save">Upload</button>
-        </form>
-
-        <div class="gallery">
-            <% images.forEach(image => { %>
-                <div class="gallery-item">
-                    <img src="<%= image.url %>" alt="<%= image.name %>">
-                </div>
-            <% }); %>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1 class="hero-title">Myblog</h1>
+            <p class="hero-subtitle">IFB-452 Cloud Computing Institut Tenologi Nasional</p>
         </div>
-    </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="section-title">Postingan Terbaru</h2>
+        <div class="gallery-grid">
+            <% images.forEach(img => { %>
+                <div class="gallery-card">
+                  <img src="<%= img.url %>" alt="<%= img.key %>" class="card-image" />
+                  <div class="card-content">
+                    <h3 class="card-title"><%= img.key %></h3>
+                    <p class="card-meta">Fetched from S3</p>
+                  </div>
+                </div>
+              <% }) %>
+        </div>
+    </section>
+
+    <script>
+        // Simple JavaScript to show filename when selected
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'No file selected';
+            const label = document.querySelector('.file-label');
+            label.innerHTML = `<p>Selected: <strong>${fileName}</strong></p>`;
+        });
+    </script>
 </body>
 </html>
