@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadella Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Image Gallery</h2>
+        <p>Image list to show image and image upload</p>
+        <p>by <a href="">Nadella Company</a></p>
+        <!-- Upload Form -->
+        <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="image" required>
+            <button type="submit" class="button save">Upload</button>
+        </form>
+
+        <div class="gallery">
+            <% images.forEach(image => { %>
+                <div class="gallery-item">
+                    <img src="<%= image.url %>" alt="<%= image.name %>">
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
